@@ -35,7 +35,7 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
 ### Step 4: Verify Installation
 
-1. Go to any GitHub page with dashes (like a pull request or issue)
+1. Refresh this page, or go to any GitHub page with dashes (like a pull request or issue)
 2. Look for highlighted dashes:
    - En dashes (–) will have black background with white text
    - Em dashes (—) will have yellow background
