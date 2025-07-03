@@ -58,7 +58,7 @@ The extension will highlight dashes in content like:
 
 ## Technical Details
 
-- **Permissions**: Only accesses github.com pages
+- **Permissions**: Only accesses github.com pages (not subdomains like docs.github.com)
 - **Performance**: Uses efficient DOM traversal to minimize impact
 - **Compatibility**: Works with dynamically loaded content
 - **Privacy**: No data collection or external requests
