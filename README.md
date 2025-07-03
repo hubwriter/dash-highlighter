@@ -1,4 +1,4 @@
-# Dash Highlighter Chrome Extension
+# GitHub dash highlighter Chrome extension
 
 A Chrome extension that highlights en dashes (–) and em dashes (—) on GitHub pages to make them more visible.
 
