@@ -62,6 +62,7 @@ The extension will highlight dashes in content like:
 - **Performance**: Uses efficient DOM traversal to minimize impact
 - **Compatibility**: Works with dynamically loaded content
 - **Privacy**: No data collection or external requests
+- **Limitations**: Dashes are not highlighted in edit mode (e.g. text input boxes)
 
 ## Troubleshooting
 
@@ -73,6 +74,7 @@ The extension will highlight dashes in content like:
 **Dashes not highlighting?**
 - Ensure the text contains actual en dashes (–) or em dashes (—), not regular hyphens (-)
 - The extension only processes visible text content
+- The extension does not highlight dashes in edit mode (i.e. when you are editing a page or adding a comment)
 
 **Performance issues?**
 - The extension is optimized for performance, but very large pages might see slight delays
