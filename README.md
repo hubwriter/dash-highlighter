@@ -1,4 +1,4 @@
-# Dash Highlighter Chrome Extension
+# GitHub dash highlighter Chrome extension
 
 A Chrome extension that highlights en dashes (–) and em dashes (—) on GitHub pages to make them more visible.
 
@@ -35,7 +35,7 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
 ### Step 4: Verify Installation
 
-1. Go to any GitHub page with dashes (like a pull request or issue)
+1. Refresh this page, or go to any GitHub page with dashes (like a pull request or issue)
 2. Look for highlighted dashes:
    - En dashes (–) will have black background with white text
    - Em dashes (—) will have yellow background
@@ -62,6 +62,7 @@ The extension will highlight dashes in content like:
 - **Performance**: Uses efficient DOM traversal to minimize impact
 - **Compatibility**: Works with dynamically loaded content
 - **Privacy**: No data collection or external requests
+- **Limitations**: Dashes are not highlighted in edit mode (e.g. text input boxes)
 
 ## Troubleshooting
 
@@ -73,6 +74,7 @@ The extension will highlight dashes in content like:
 **Dashes not highlighting?**
 - Ensure the text contains actual en dashes (–) or em dashes (—), not regular hyphens (-)
 - The extension only processes visible text content
+- The extension does not highlight dashes in edit mode (i.e. when you are editing a page or adding a comment)
 
 **Performance issues?**
 - The extension is optimized for performance, but very large pages might see slight delays
