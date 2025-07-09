@@ -11,13 +11,15 @@
         enDashBg: '#ffff00', // yellow
         enDashFg: '#000000', // black
         emDashBg: '#ffb347', // orange
-        emDashFg: '#000000'  // black
+        emDashFg: '#000000', // black
+        enDashEnable: true,
+        emDashEnable: true
     };
 
     // Create a unique class name to avoid conflicts
     const PROCESSED_CLASS = 'dash-highlighter-processed';
 
-    // Store user styles
+    // Store user styles and enable flags
     let userStyles = { ...DEFAULTS };
 
     function getStyle(dashType) {
@@ -80,21 +82,26 @@
 
         parts.forEach(part => {
             if (part === EN_DASH) {
-                // Create span for en dash
-                const span = document.createElement('span');
-                span.style.cssText = getStyle('en');
-                span.textContent = EN_DASH;
-                span.classList.add(PROCESSED_CLASS);
-                fragment.appendChild(span);
+                if (userStyles.enDashEnable !== false) { // highlight if enabled (default true)
+                    const span = document.createElement('span');
+                    span.style.cssText = getStyle('en');
+                    span.textContent = EN_DASH;
+                    span.classList.add(PROCESSED_CLASS);
+                    fragment.appendChild(span);
+                } else {
+                    fragment.appendChild(document.createTextNode(EN_DASH));
+                }
             } else if (part === EM_DASH) {
-                // Create span for em dash
-                const span = document.createElement('span');
-                span.style.cssText = getStyle('em');
-                span.textContent = EM_DASH;
-                span.classList.add(PROCESSED_CLASS);
-                fragment.appendChild(span);
+                if (userStyles.emDashEnable !== false) { // highlight if enabled (default true)
+                    const span = document.createElement('span');
+                    span.style.cssText = getStyle('em');
+                    span.textContent = EM_DASH;
+                    span.classList.add(PROCESSED_CLASS);
+                    fragment.appendChild(span);
+                } else {
+                    fragment.appendChild(document.createTextNode(EM_DASH));
+                }
             } else if (part.length > 0) {
-                // Regular text
                 fragment.appendChild(document.createTextNode(part));
             }
         });
