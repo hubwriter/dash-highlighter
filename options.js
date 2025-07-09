@@ -1,6 +1,10 @@
+// Default font family that matches content.js getStyle() function
+const DEFAULT_FONT_FAMILY = "math, 'Times New Roman', fantasy, serif";
+
 // Saves options to chrome.storage
 function saveOptions() {
   chrome.storage.sync.set({
+    fontFamily: document.getElementById('font-family').value,
     enDashBg: document.getElementById('en-bg').value,
     enDashFg: document.getElementById('en-fg').value,
     emDashBg: document.getElementById('em-bg').value,
@@ -16,6 +20,7 @@ function saveOptions() {
 // Restores select box, color, and enable state using the preferences stored in chrome.storage.
 function restoreOptions() {
   chrome.storage.sync.get({
+    fontFamily: 'default',
     enDashBg: '#7083e1',
     enDashFg: '#ffffff',
     emDashBg: '#ffff00',
@@ -23,6 +28,7 @@ function restoreOptions() {
     enDashEnable: true,
     emDashEnable: true
   }, function(items) {
+    if (document.getElementById('font-family')) document.getElementById('font-family').value = items.fontFamily;
     if (document.getElementById('en-bg')) document.getElementById('en-bg').value = items.enDashBg;
     if (document.getElementById('en-fg')) document.getElementById('en-fg').value = items.enDashFg;
     if (document.getElementById('em-bg')) document.getElementById('em-bg').value = items.emDashBg;
@@ -40,6 +46,8 @@ let originalPreviewText = '';
 
 // Live preview logic for dash highlighting
 function updatePreview() {
+  const fontFamilyValue = document.getElementById('font-family')?.value || 'default';
+  const fontFamily = fontFamilyValue === 'default' ? DEFAULT_FONT_FAMILY : fontFamilyValue;
   const enEnabled = document.getElementById('en-enable')?.checked ?? true;
   const emEnabled = document.getElementById('em-enable')?.checked ?? true;
   const enBg = document.getElementById('en-bg')?.value || '#7083e1';
@@ -102,7 +110,7 @@ function updatePreview() {
       if (part === EN_DASH) {
         if (enEnabled) {
           const span = document.createElement('span');
-          span.style.cssText = `background-color:${enBg}; color:${enFg}; border-radius:4px; padding:0 2px;`;
+          span.style.cssText = `font-family:${fontFamily}; background-color:${enBg}; color:${enFg}; border-radius:4px; padding:0 2px;`;
           span.textContent = EN_DASH;
           fragment.appendChild(span);
         } else {
@@ -111,7 +119,7 @@ function updatePreview() {
       } else if (part === EM_DASH) {
         if (emEnabled) {
           const span = document.createElement('span');
-          span.style.cssText = `background-color:${emBg}; color:${emFg}; border-radius:4px; padding:0 2px;`;
+          span.style.cssText = `font-family:${fontFamily}; background-color:${emBg}; color:${emFg}; border-radius:4px; padding:0 2px;`;
           span.textContent = EM_DASH;
           fragment.appendChild(span);
         } else {
@@ -136,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   restoreOptions();
   [
-    'en-bg', 'en-fg', 'em-bg', 'em-fg', 'en-enable', 'em-enable'
+    'font-family', 'en-bg', 'en-fg', 'em-bg', 'em-fg', 'en-enable', 'em-enable'
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) {

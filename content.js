@@ -8,6 +8,7 @@
 
     // Default styles for highlighting
     const DEFAULTS = {
+        fontFamily: 'default',
         enDashBg: '#ffff00', // yellow
         enDashFg: '#000000', // black
         emDashBg: '#ffb347', // orange
@@ -23,10 +24,15 @@
     let userStyles = { ...DEFAULTS };
 
     function getStyle(dashType) {
+        // Use stored font family, or default if not set or set to 'default'
+        const fontFamily = (userStyles.fontFamily === 'default' || !userStyles.fontFamily)
+            ? "math, 'Times New Roman', fantasy, serif"
+            : userStyles.fontFamily;
+
         if (dashType === 'en') {
-            return `font-family: math, 'Times New Roman', fantasy, serif; background-color:${userStyles.enDashBg}; color:${userStyles.enDashFg}`;
+            return `font-family: ${fontFamily}; background-color:${userStyles.enDashBg}; color:${userStyles.enDashFg}`;
         } else {
-            return `font-family: math, 'Times New Roman', fantasy, serif; background-color:${userStyles.emDashBg}; color:${userStyles.emDashFg}`;
+            return `font-family: ${fontFamily}; background-color:${userStyles.emDashBg}; color:${userStyles.emDashFg}`;
         }
     }
 

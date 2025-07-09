@@ -7,6 +7,7 @@ A Chrome extension that highlights en dashes (–) and em dashes (—) on GitHub
 - 🔍 Automatically detects en dashes and em dashes on GitHub pages
 - 🎨 Highlights en dashes with black background and white text
 - 🌟 Highlights em dashes with yellow background
+- ⚙️ Fully configurable highlighting colors, fonts, and enable/disable options
 - ⚡ Works on dynamically loaded content
 - 🎯 Only runs on github.com (not subdomains)
 
@@ -55,6 +56,22 @@ The extension will highlight dashes in content like:
 - Time ranges: "2:00–3:30 PM"
 - Page ranges: "See pages 10–25"
 - Emphasis: "This is important—pay attention"
+
+## Configuration
+
+The extension is fully configurable, allowing you to customize highlighting colors, fonts, and enable/disable settings for both en dashes and em dashes.
+
+### Accessing the Options Page
+
+1. Open Chrome and go to `chrome://extensions/`
+2. Find the "Dash Highlighter" extension in your list
+3. Click the **"Details"** button on the extension card
+4. Scroll down and click **"Extension options"**
+5. The options page will open in a new tab where you can customize your settings
+
+Alternatively, you can:
+1. Right-click the extension icon in your Chrome toolbar (if pinned)
+2. Select **"Options"** from the context menu
 
 ## Technical Details
 
