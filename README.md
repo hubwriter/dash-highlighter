@@ -42,7 +42,7 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
    - En dashes (–) will be highlighted in blue by default.
    - Em dashes (—) will be highlighted in yellow by default.
 
-  You can change the highlighting colors in the extension's options. See "Configuration" below.
+   You can change the highlighting colors in the extension's options. See "Configuration" below.
 
 ### Available Settings
 
