@@ -1,49 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dash Highlighter Options</title>
+</head>
 <body>
-  <div class="options-container">
-    <h1>Dash Highlighter Options</h1>
-    <form id="options-form">
-      <div class="dash-type">En Dash (&#8209;)</div>
-      <table>
-        <tr>
-          <td>Enable</td>
-          <td>
-            <label class="switch">
-              <input type="checkbox" id="en-enable" name="en-enable">
-              <span class="slider"></span>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>Background Color</td>
-          <td><input type="color" id="en-bg" name="en-bg"></td>
-        </tr>
-        <tr>
-          <td>Text Color</td>
-          <td><input type="color" id="en-fg" name="en-fg"></td>
-        </tr>
-      </table>
-      <div class="dash-type">Em Dash (&#8212;)</div>
-      <table>
-        <tr>
-          <td>Enable</td>
-          <td>
-            <label class="switch">
-              <input type="checkbox" id="em-enable" name="em-enable">
-              <span class="slider"></span>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>Background Color</td>
-          <td><input type="color" id="em-bg" name="em-bg"></td>
-        </tr>
-        <tr>
-          <td>Text Color</td>
-          <td><input type="color" id="em-fg" name="em-fg"></td>
-        </tr>
-      </table>
-      <span id="status"></span>
-    </form>
+  <div class="settings-preview-wrapper">
+    <div class="options-container">
+      <h1>Dash Highlighter Options</h1>
+      <form id="options-form">
+        <div class="dash-type">En Dash (&#8209;)</div>
+        <table>
+          <tr>
+            <td>Enable</td>
+            <td>
+              <label class="switch">
+                <input type="checkbox" id="en-enable" name="en-enable">
+                <span class="slider"></span>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Background Color</td>
+            <td><input type="color" id="en-bg" name="en-bg"></td>
+          </tr>
+          <tr>
+            <td>Text Color</td>
+            <td><input type="color" id="en-fg" name="en-fg"></td>
+          </tr>
+        </table>
+        <div class="dash-type">Em Dash (&#8212;)</div>
+        <table>
+          <tr>
+            <td>Enable</td>
+            <td>
+              <label class="switch">
+                <input type="checkbox" id="em-enable" name="em-enable">
+                <span class="slider"></span>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td>Background Color</td>
+            <td><input type="color" id="em-bg" name="em-bg"></td>
+          </tr>
+          <tr>
+            <td>Text Color</td>
+            <td><input type="color" id="em-fg" name="em-fg"></td>
+          </tr>
+        </table>
+        <span id="status"></span>
+      </form>
+    </div>
+    <div class="preview-container">
+      <div id="dash-preview" class="dash-preview-block" style="font-family: inherit; background: #fff; color: #23272e; border: 1px solid #e5e7eb; box-shadow: none;">
+Lorem ipsum dolor sit amet—consectetur adipiscing elit—sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim-veniam, quis 9–12 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in London–Brighton voluptate velit esse cillum dolore eu fugiat nulla-pariatur. Excepteur sint occaecat cupidatat non proident—sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+    </div>
   </div>
   <script src="options.js"></script>
   <style>
@@ -54,10 +68,13 @@
     }
     body {
       min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
       background: #f7f8fa;
+    }
+    .settings-preview-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
     .options-container {
       background: #fff;
@@ -67,6 +84,33 @@
       min-width: 340px;
       max-width: 95vw;
       margin: 2.2em auto 0 auto;
+    }
+    .preview-container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 1.5em 2.2em 1.5em 2.2em;
+      width: 100em;
+      max-width: 90vw;
+      margin: 2em auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .dash-preview-block {
+      background: #fff;
+      color: #23272e;
+      font-family: inherit;
+      font-size: 1.08em;
+      border-radius: 10px;
+      margin: 0;
+      padding: 1.2em 1.5em;
+      width: 100%;
+      box-shadow: none;
+      white-space: pre-wrap;
+      word-break: break-all;
+      border: 1px solid #e5e7eb;
+      display: block;
     }
     h1 {
       text-align: left;
@@ -148,14 +192,16 @@
     input:checked + .slider:before {
       transform: translateX(20px);
     }
-    @media (max-width: 500px) {
-      .options-container {
-        padding: 1.2em 0.5em 1em 0.5em;
+    @media (max-width: 700px) {
+      .options-container, .preview-container {
         min-width: unset;
+        padding: 1em 0.5em 1em 0.5em;
       }
-      h1 {
-        font-size: 1.2em;
+      .dash-preview-block {
+        font-size: 0.98em;
+        padding: 0.7em 0.5em;
       }
     }
   </style>
 </body>
+</html>
