@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dash Highlighter Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .highlight { background-color: #f0f0f0; padding: 10px; margin: 10px 0; }
+        code { background-color: #f5f5f5; padding: 2px 4px; }
+    </style>
+</head>
+<body>
+    <h1>Dash Highlighter Test Page</h1>
+    <p>This page is for testing the Dash Highlighter extension.</p>
+
+    <h2>Test Text with Dashes:</h2>
+    <div class="highlight">
+        <p>En dash examples: January 1–15, 2024 and pages 10–25</p>
+        <p>Em dash examples: This is important—pay attention!</p>
+        <p>Mixed: Time range 2:00–3:30 PM—that's when the meeting starts.</p>
+        <p>More examples: The New York–London flight costs $500—quite expensive!</p>
+    </div>
+
+    <h2>Instructions:</h2>
+    <ol>
+        <li>Open this file in Chrome</li>
+        <li>Check if dashes are highlighted (they should be if URL patterns allow it)</li>
+        <li>Go to extension options and modify URL patterns</li>
+        <li>Reload this page to test the changes</li>
+        <li>Check the browser console for debug messages</li>
+    </ol>
+
+    <h2>URL Pattern Examples to Test:</h2>
+    <ul>
+        <li><code>file://*</code> - Should work on local files</li>
+        <li><code>https://github.com/*</code> - Should only work on GitHub</li>
+        <li><code>*</code> or empty - Should work everywhere</li>
+        <li><code>https://example.com/*</code> - Should not work on this local file</li>
+    </ul>
+
+    <h2>Current Page Info:</h2>
+    <p>URL: <span id="current-url"></span></p>
+    <p>If the extension is working, you should see console messages in the browser dev tools.</p>
+
+    <script>
+        document.getElementById('current-url').textContent = window.location.href;
+    </script>
+</body>
+</html>
