@@ -39,8 +39,10 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
 1. Go to [github.com/hubwriter/github-dash-highlighter/test.html](https://github.com/hubwriter/github-dash-highlighter/blob/main/test.html).
 2. Look for highlighted dashes:
-   - En dashes (–) will be highlighted in yellow by default.
-   - Em dashes (—) will be highlighted in orange by default.
+   - En dashes (–) will be highlighted in blue by default.
+   - Em dashes (—) will be highlighted in yellow by default.
+
+  You can change the highlighting colors in the extension's options. See "Configuration" below.
 
 ### Available Settings
 
