@@ -122,6 +122,10 @@ MIT License - see LICENSE file for details.
 
 ## Version History
 
+- **v1.1.0** - Configuation options
+  - Add an options page for configuring highlighting etc.
+  - Add files to support adding extension to Chrome Web Store.
+
 - **v1.0.0** - Initial release.
   - Basic en dash and em dash highlighting.
   - GitHub-only scope.
