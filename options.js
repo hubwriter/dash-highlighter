@@ -18,8 +18,8 @@ function restoreOptions() {
   chrome.storage.sync.get({
     enDashBg: '#7083e1',
     enDashFg: '#ffffff',
-    emDashBg: '#ff0000',
-    emDashFg: '#ffffff',
+    emDashBg: '#ffff00',
+    emDashFg: '#b614c2',
     enDashEnable: true,
     emDashEnable: true
   }, function(items) {
@@ -44,8 +44,8 @@ function updatePreview() {
   const emEnabled = document.getElementById('em-enable')?.checked ?? true;
   const enBg = document.getElementById('en-bg')?.value || '#7083e1';
   const enFg = document.getElementById('en-fg')?.value || '#ffffff';
-  const emBg = document.getElementById('em-bg')?.value || '#ff0000';
-  const emFg = document.getElementById('em-fg')?.value || '#ffffff';
+  const emBg = document.getElementById('em-bg')?.value || '#ffff00';
+  const emFg = document.getElementById('em-fg')?.value || '#b614c2';
   const preview = document.getElementById('dash-preview');
   if (!preview) return;
 
