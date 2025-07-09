@@ -1,15 +1,16 @@
-# GitHub dash highlighter Chrome extension
+# Dash Highlighter Chrome Extension
 
-A Chrome extension that highlights en dashes (–) and em dashes (—) on GitHub pages to make them more visible.
+A Chrome extension that highlights en dashes (–) and em dashes (—) on web pages to make them more visible. Highly configurable with support for custom colors, fonts, and URL patterns.
 
 ## Features
 
-- 🔍 Automatically detects en dashes and em dashes on GitHub pages
-- 🎨 Highlights en dashes with black background and white text
-- 🌟 Highlights em dashes with yellow background
-- ⚙️ Fully configurable highlighting colors, fonts, and enable/disable options
-- ⚡ Works on dynamically loaded content
-- 🎯 Only runs on github.com (not subdomains)
+- 🔍 Automatically detects en dashes and em dashes on web pages
+- 🎨 Configurable highlighting colors for both dash types
+- 🔤 Customizable fonts for highlighted dashes
+- ⚙️ Toggle highlighting on/off for each dash type
+- 🌐 URL pattern matching - choose which sites the extension runs on
+- ⚡ Works on dynamically loaded content (AJAX/SPA sites)
+- 🎯 Real-time settings updates - no need to reload pages
 
 ## Installation
 
@@ -36,18 +37,29 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
 ### Step 4: Verify Installation
 
-1. Refresh this page, or go to any GitHub page with dashes (like a pull request or issue)
+1. Open the included `test.html` file in Chrome, or visit any web page with dashes
 2. Look for highlighted dashes:
-   - En dashes (–) will have black background with white text
-   - Em dashes (—) will have yellow background
+   - En dashes (–) will be highlighted in yellow by default
+   - Em dashes (—) will be highlighted in orange by default
 
-## Usage
+### Available Settings
 
-The extension works automatically once installed. Simply browse GitHub normally:
+- **URL Patterns**: Control which websites the extension runs on
+  - Default: `https://github.com/*` (GitHub only)
+  - Use `*` or leave empty to run on all sites
+  - Use `file://*` to run on local files
+  - Supports wildcards and comma-separated patterns
+- **Font Family**: Choose the font for highlighted dashes
+- **Colors**: Customize background and text colors for each dash type
+- **Enable/Disable**: Toggle highlighting for en dashes and em dashes individually
 
-- View pull requests with dash-separated ranges
-- Read issues and comments containing dashes
-- Review documentation with proper typography
+### URL Pattern Examples
+
+- `https://github.com/*` - GitHub only
+- `https://*.github.com/*` - GitHub and subdomains
+- `file://*` - Local files
+- `https://example.com/*,https://test.com/*` - Multiple sites
+- `*` or empty - All websites
 
 ## Examples
 
@@ -75,7 +87,7 @@ Alternatively, you can:
 
 ## Technical Details
 
-- **Permissions**: Only accesses github.com pages (not subdomains like docs.github.com)
+- **Permissions**: Configurable - by default only accesses github.com pages, but can be set to work on any URL
 - **Performance**: Uses efficient DOM traversal to minimize impact
 - **Compatibility**: Works with dynamically loaded content
 - **Privacy**: No data collection or external requests
@@ -84,14 +96,16 @@ Alternatively, you can:
 ## Troubleshooting
 
 **Extension not working?**
-- Make sure you're on a github.com page (not docs.github.com or other subdomains)
-- Check that the extension is enabled in `chrome://extensions/`
+- Check that the current URL matches your configured URL patterns in the extension options
+- Make sure the extension is enabled in `chrome://extensions/`
 - Try refreshing the page
+- Check the browser console for debug messages from the extension
 
 **Dashes not highlighting?**
 - Ensure the text contains actual en dashes (–) or em dashes (—), not regular hyphens (-)
 - The extension only processes visible text content
 - The extension does not highlight dashes in edit mode (i.e. when you are editing a page or adding a comment)
+- Verify that highlighting is enabled for the dash type in the extension options
 
 **Performance issues?**
 - The extension is optimized for performance, but very large pages might see slight delays

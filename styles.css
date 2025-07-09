@@ -123,6 +123,23 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
+input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5em;
+  font-size: 1em;
+  background: #fff;
+  margin-left: 0.5em;
+  min-width: 300px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
 #status {
   margin-left: 1.2em;
   color: #16a34a;

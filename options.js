@@ -1,9 +1,10 @@
 // Default font family that matches content.js getStyle() function
-const DEFAULT_FONT_FAMILY = "math, 'Times New Roman', fantasy, serif";
+const DEFAULT_FONT_FAMILY = DASH_HIGHLIGHTER_CONSTANTS.DEFAULT_FONT_FAMILY;
 
 // Saves options to chrome.storage
 function saveOptions() {
   chrome.storage.sync.set({
+    urlPatterns: document.getElementById('url-patterns').value,
     fontFamily: document.getElementById('font-family').value,
     enDashBg: document.getElementById('en-bg').value,
     enDashFg: document.getElementById('en-fg').value,
@@ -19,15 +20,8 @@ function saveOptions() {
 
 // Restores select box, color, and enable state using the preferences stored in chrome.storage.
 function restoreOptions() {
-  chrome.storage.sync.get({
-    fontFamily: 'default',
-    enDashBg: '#7083e1',
-    enDashFg: '#ffffff',
-    emDashBg: '#ffff00',
-    emDashFg: '#b614c2',
-    enDashEnable: true,
-    emDashEnable: true
-  }, function(items) {
+  chrome.storage.sync.get(DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS, function(items) {
+    if (document.getElementById('url-patterns')) document.getElementById('url-patterns').value = items.urlPatterns;
     if (document.getElementById('font-family')) document.getElementById('font-family').value = items.fontFamily;
     if (document.getElementById('en-bg')) document.getElementById('en-bg').value = items.enDashBg;
     if (document.getElementById('en-fg')) document.getElementById('en-fg').value = items.enDashFg;
@@ -50,10 +44,10 @@ function updatePreview() {
   const fontFamily = fontFamilyValue === 'default' ? DEFAULT_FONT_FAMILY : fontFamilyValue;
   const enEnabled = document.getElementById('en-enable')?.checked ?? true;
   const emEnabled = document.getElementById('em-enable')?.checked ?? true;
-  const enBg = document.getElementById('en-bg')?.value || '#7083e1';
-  const enFg = document.getElementById('en-fg')?.value || '#ffffff';
-  const emBg = document.getElementById('em-bg')?.value || '#ffff00';
-  const emFg = document.getElementById('em-fg')?.value || '#b614c2';
+  const enBg = document.getElementById('en-bg')?.value || DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS.enDashBg;
+  const enFg = document.getElementById('en-fg')?.value || DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS.enDashFg;
+  const emBg = document.getElementById('em-bg')?.value || DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS.emDashBg;
+  const emFg = document.getElementById('em-fg')?.value || DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS.emDashFg;
   const preview = document.getElementById('dash-preview');
   if (!preview) return;
 
@@ -144,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   restoreOptions();
   [
-    'font-family', 'en-bg', 'en-fg', 'em-bg', 'em-fg', 'en-enable', 'em-enable'
+    'url-patterns', 'font-family', 'en-bg', 'en-fg', 'em-bg', 'em-fg', 'en-enable', 'em-enable'
   ].forEach(id => {
     const el = document.getElementById(id);
     if (el) {

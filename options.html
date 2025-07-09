@@ -11,7 +11,7 @@
     <div class="options-container">
       <h1>Dash Highlighter Options</h1>
       <form id="options-form">
-        <div class="dash-type">Font</div>
+        <div class="dash-type">Font for highlighted dashes</div>
         <table>
           <tr>
             <td>
@@ -28,6 +28,15 @@
                 <option value="'Lucida Console', monospace">Lucida Console</option>
                 <option value="Tahoma, sans-serif">Tahoma</option>
               </select>
+            </td>
+          </tr>
+        </table>
+        <div class="dash-type">URLs where the extension will work</div>
+        <p>Enter URLs where you want dashes to be highlighted.<br>You can use a comma-separated list and wildcards (*) for flexibility.<br>Clear all entries to make the extension work anywhere.</p>
+        <table>
+          <tr>
+            <td>
+              <input type="text" id="url-patterns" name="url-patterns" placeholder="https://github.com/* (leave empty for all URLs)">
             </td>
           </tr>
         </table>
@@ -80,6 +89,7 @@ Lorem ipsum dolor sit amet—consectetur adipiscing elit—sed do eiusmod tempor
       </div>
     </div>
   </div>
+  <script src="constants.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

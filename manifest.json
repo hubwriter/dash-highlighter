@@ -4,13 +4,15 @@
   "version": "1.0",
   "description": "Highlights en dashes and em dashes on web pages",
   "permissions": [
-    "activeTab",
     "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "content_scripts": [
     {
-      "matches": ["https://github.com/*"],
-      "js": ["content.js"],
+      "matches": ["<all_urls>"],
+      "js": ["constants.js", "content.js"],
       "run_at": "document_end"
     }
   ],
