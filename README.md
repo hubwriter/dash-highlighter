@@ -4,13 +4,13 @@ A Chrome extension that highlights en dashes (–) and em dashes (—) on web pa
 
 ## Features
 
-- 🔍 Automatically detects en dashes and em dashes on web pages
-- 🎨 Configurable highlighting colors for both dash types
-- 🔤 Customizable fonts for highlighted dashes
-- ⚙️ Toggle highlighting on/off for each dash type
-- 🌐 URL pattern matching - choose which sites the extension runs on
-- ⚡ Works on dynamically loaded content (AJAX/SPA sites)
-- 🎯 Real-time settings updates - no need to reload pages
+- 🔍 Automatically detects en dashes and em dashes on web pages.
+- 🎨 Configurable highlighting colors for both dash types.
+- 🔤 Customizable fonts for highlighted dashes.
+- ⚙️ Toggle highlighting on/off for each dash type.
+- 🌐 URL pattern matching - choose which sites the extension runs on.
+- ⚡ Works on dynamically loaded content (AJAX/SPA sites).
+- 🎯 Real-time settings updates - no need to reload pages.
 
 ## Installation
 
@@ -18,56 +18,56 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
 ### Step 1: Download the Extension
 
-1. Click the green **"Code"** button above
-2. Select **"Download ZIP"**
-3. Extract the ZIP file to a folder on your computer
-4. Remember the location of this folder
+1. Click the green **"Code"** button above.
+2. Select **"Download ZIP"**.
+3. Extract the ZIP file to a folder on your computer.
+4. Remember the location of this folder.
 
 ### Step 2: Enable Developer Mode in Chrome
 
-1. Open Chrome and go to `chrome://extensions/`
-2. Toggle **"Developer mode"** ON (switch in the top right)
-3. You should now see additional buttons appear
+1. Open Chrome and go to `chrome://extensions/`.
+2. Toggle **"Developer mode"** ON (switch in the top right).
+3. You should now see additional buttons appear.
 
 ### Step 3: Load the Extension
 
-1. Click the **"Load unpacked"** button
-2. Navigate to and select the folder where you extracted the extension
-3. The extension should now appear in your extensions list
+1. Click the **"Load unpacked"** button.
+2. Navigate to and select the folder where you extracted the extension.
+3. The extension should now appear in your extensions list.
 
 ### Step 4: Verify Installation
 
-1. Open the included `test.html` file in Chrome, or visit any web page with dashes
+1. Go to [github.com/hubwriter/github-dash-highlighter/test.html](https://github.com/hubwriter/github-dash-highlighter/blob/main/test.html).
 2. Look for highlighted dashes:
-   - En dashes (–) will be highlighted in yellow by default
-   - Em dashes (—) will be highlighted in orange by default
+   - En dashes (–) will be highlighted in yellow by default.
+   - Em dashes (—) will be highlighted in orange by default.
 
 ### Available Settings
 
-- **URL Patterns**: Control which websites the extension runs on
-  - Default: `https://github.com/*` (GitHub only)
-  - Use `*` or leave empty to run on all sites
-  - Use `file://*` to run on local files
-  - Supports wildcards and comma-separated patterns
-- **Font Family**: Choose the font for highlighted dashes
-- **Colors**: Customize background and text colors for each dash type
-- **Enable/Disable**: Toggle highlighting for en dashes and em dashes individually
+- **URL Patterns**: Control which websites the extension runs on.
+  - Default: `https://github.com/*` (GitHub only).
+  - Use `*` or leave empty to run on all sites.
+  - Use `file://*` to run on local files.
+  - Supports wildcards and comma-separated patterns.
+- **Font Family**: Choose the font for highlighted dashes.
+- **Colors**: Customize background and text colors for each dash type.
+- **Enable/Disable**: Toggle highlighting for en dashes and em dashes individually.
 
 ### URL Pattern Examples
 
-- `https://github.com/*` - GitHub only
-- `https://*.github.com/*` - GitHub and subdomains
-- `file://*` - Local files
-- `https://example.com/*,https://test.com/*` - Multiple sites
-- `*` or empty - All websites
+- `https://github.com/*` - GitHub only.
+- `https://*.github.com/*` - GitHub and subdomains.
+- `file://*` - Local files.
+- `https://example.com/*,https://test.com/*` - Multiple sites.
+- `*` or empty - All websites.
 
 ## Examples
 
 The extension will highlight dashes in content like:
-- Date ranges: "January 1–15, 2024"
-- Time ranges: "2:00–3:30 PM"
-- Page ranges: "See pages 10–25"
-- Emphasis: "This is important—pay attention"
+- Date ranges: "January 1–15, 2025."
+- Time ranges: "2:00–3:30 PM."
+- Page ranges: "See pages 10–25."
+- Emphasis: "This is important—pay attention."
 
 ## Configuration
 
@@ -75,40 +75,40 @@ The extension is fully configurable, allowing you to customize highlighting colo
 
 ### Accessing the Options Page
 
-1. Open Chrome and go to `chrome://extensions/`
-2. Find the "Dash Highlighter" extension in your list
-3. Click the **"Details"** button on the extension card
-4. Scroll down and click **"Extension options"**
-5. The options page will open in a new tab where you can customize your settings
+1. Open Chrome and go to `chrome://extensions/`.
+2. Find the "Dash Highlighter" extension in your list.
+3. Click the **"Details"** button on the extension card.
+4. Scroll down and click **"Extension options"**.
+5. The options page will open in a new tab where you can customize your settings.
 
 Alternatively, you can:
-1. Right-click the extension icon in your Chrome toolbar (if pinned)
-2. Select **"Options"** from the context menu
+1. Right-click the extension icon in your Chrome toolbar (if pinned).
+2. Select **"Options"** from the context menu.
 
 ## Technical Details
 
-- **Permissions**: Configurable - by default only accesses github.com pages, but can be set to work on any URL
-- **Performance**: Uses efficient DOM traversal to minimize impact
-- **Compatibility**: Works with dynamically loaded content
-- **Privacy**: No data collection or external requests
-- **Limitations**: Dashes are not highlighted in edit mode (e.g. text input boxes)
+- **Permissions**: Configurable - by default only accesses github.com pages, but can be set to work on any URL.
+- **Performance**: Uses efficient DOM traversal to minimize impact.
+- **Compatibility**: Works with dynamically loaded content.
+- **Privacy**: No data collection or external requests.
+- **Limitations**: Dashes are not highlighted in edit mode (e.g. text input boxes).
 
 ## Troubleshooting
 
 **Extension not working?**
-- Check that the current URL matches your configured URL patterns in the extension options
-- Make sure the extension is enabled in `chrome://extensions/`
-- Try refreshing the page
-- Check the browser console for debug messages from the extension
+- Check that the current URL matches your configured URL patterns in the extension options.
+- Make sure the extension is enabled in `chrome://extensions/`.
+- Try refreshing the page.
+- Check the browser console for debug messages from the extension.
 
 **Dashes not highlighting?**
-- Ensure the text contains actual en dashes (–) or em dashes (—), not regular hyphens (-)
-- The extension only processes visible text content
-- The extension does not highlight dashes in edit mode (i.e. when you are editing a page or adding a comment)
-- Verify that highlighting is enabled for the dash type in the extension options
+- Ensure the text contains actual en dashes (–) or em dashes (—), not regular hyphens (-).
+- The extension only processes visible text content.
+- The extension does not highlight dashes in edit mode (i.e. when you are editing a page or adding a comment).
+- Verify that highlighting is enabled for the dash type in the extension options.
 
 **Performance issues?**
-- The extension is optimized for performance, but very large pages might see slight delays
+- The extension is optimized for performance, but very large pages might see slight delays.
 
 ## Contributing
 
@@ -120,7 +120,7 @@ MIT License - see LICENSE file for details.
 
 ## Version History
 
-- **v1.0.0** - Initial release
-  - Basic en dash and em dash highlighting
-  - GitHub-only scope
-  - Dynamic content support
+- **v1.0.0** - Initial release.
+  - Basic en dash and em dash highlighting.
+  - GitHub-only scope.
+  - Dynamic content support.
