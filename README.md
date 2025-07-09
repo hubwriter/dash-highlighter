@@ -44,25 +44,6 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
    You can change the highlighting colors in the extension's options. See "Configuration" below.
 
-### Available Settings
-
-- **URL Patterns**: Control which websites the extension runs on.
-  - Default: `https://github.com/*` (GitHub only).
-  - Use `*` or leave empty to run on all sites.
-  - Use `file://*` to run on local files.
-  - Supports wildcards and comma-separated patterns.
-- **Font Family**: Choose the font for highlighted dashes.
-- **Colors**: Customize background and text colors for each dash type.
-- **Enable/Disable**: Toggle highlighting for en dashes and em dashes individually.
-
-### URL Pattern Examples
-
-- `https://github.com/*` - GitHub only.
-- `https://*.github.com/*` - GitHub and subdomains.
-- `file://*` - Local files.
-- `https://example.com/*,https://test.com/*` - Multiple sites.
-- `*` or empty - All websites.
-
 ## Examples
 
 The extension will highlight dashes in content like:
@@ -86,6 +67,25 @@ The extension is fully configurable, allowing you to customize highlighting colo
 Alternatively, you can:
 1. Right-click the extension icon in your Chrome toolbar (if pinned).
 2. Select **"Options"** from the context menu.
+
+### Available Settings
+
+- **URL Patterns**: Control which websites the extension runs on.
+  - Default: `https://github.com/*` (GitHub only).
+  - Use `*` or leave empty to run on all sites.
+  - Use `file://*` to run on local files.
+  - Supports wildcards and comma-separated patterns.
+- **Font Family**: Choose the font for highlighted dashes.
+- **Colors**: Customize background and text colors for each dash type.
+- **Enable/Disable**: Toggle highlighting for en dashes and em dashes individually.
+
+### URL Pattern Examples
+
+- `https://github.com/*` - GitHub only.
+- `https://*.github.com/*` - GitHub and subdomains.
+- `file://*` - Local files.
+- `https://example.com/*,https://test.com/*` - Multiple sites.
+- `*` or empty - All websites.
 
 ## Technical Details
 
