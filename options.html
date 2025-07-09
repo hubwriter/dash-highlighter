@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dash Highlighter Options</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="settings-preview-wrapper">
@@ -54,154 +55,11 @@
       </form>
     </div>
     <div class="preview-container">
-      <div id="dash-preview" class="dash-preview-block" style="font-family: inherit; background: #fff; color: #23272e; border: 1px solid #e5e7eb; box-shadow: none;">
+      <div id="dash-preview" class="dash-preview-block">
 Lorem ipsum dolor sit amet—consectetur adipiscing elit—sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim-veniam, quis 9–12 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in London–Brighton voluptate velit esse cillum dolore eu fugiat nulla-pariatur. Excepteur sint occaecat cupidatat non proident—sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
     </div>
   </div>
   <script src="options.js"></script>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      min-height: 100vh;
-      background: #f7f8fa;
-    }
-    .settings-preview-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .options-container {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      padding: 2.5em 2.5em 2em 2.5em;
-      min-width: 340px;
-      max-width: 95vw;
-      margin: 2.2em auto 0 auto;
-    }
-    .preview-container {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      padding: 1.5em 2.2em 1.5em 2.2em;
-      width: 100em;
-      max-width: 90vw;
-      margin: 2em auto 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .dash-preview-block {
-      background: #fff;
-      color: #23272e;
-      font-family: inherit;
-      font-size: 1.08em;
-      border-radius: 10px;
-      margin: 0;
-      padding: 1.2em 1.5em;
-      width: 100%;
-      box-shadow: none;
-      white-space: pre-wrap;
-      word-break: break-all;
-      border: 1px solid #e5e7eb;
-      display: block;
-    }
-    h1 {
-      text-align: left;
-      font-size: 2.2em;
-      margin-bottom: 1.2em;
-      color: #222;
-      letter-spacing: 0.01em;
-    }
-    .dash-type {
-      font-weight: 600;
-      font-size: 1.1em;
-      margin: 2em 0 0.7em 0;
-      color: #3a3a3a;
-    }
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 0.5em;
-      margin-bottom: 0.5em;
-    }
-    td {
-      padding: 0.4em 0.5em 0.4em 0;
-      font-size: 1em;
-      color: #444;
-      vertical-align: middle;
-    }
-    input[type="color"] {
-      border: none;
-      width: 2.2em;
-      height: 2.2em;
-      background: none;
-      cursor: pointer;
-      margin-left: 0.5em;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      border-radius: 6px;
-    }
-    #status {
-      margin-left: 1.2em;
-      color: #16a34a;
-      font-weight: 500;
-      font-size: 1em;
-    }
-    /* Toggle Switch Styles */
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-      vertical-align: middle;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #ccc;
-      transition: .3s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .3s;
-      border-radius: 50%;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-    }
-    input:checked + .slider {
-      background-color: #3b82f6;
-    }
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-    @media (max-width: 700px) {
-      .options-container, .preview-container {
-        min-width: unset;
-        padding: 1em 0.5em 1em 0.5em;
-      }
-      .dash-preview-block {
-        font-size: 0.98em;
-        padding: 0.7em 0.5em;
-      }
-    }
-  </style>
 </body>
 </html>

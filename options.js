@@ -16,10 +16,10 @@ function saveOptions() {
 // Restores select box, color, and enable state using the preferences stored in chrome.storage.
 function restoreOptions() {
   chrome.storage.sync.get({
-    enDashBg: '#ffff00',
-    enDashFg: '#000000',
-    emDashBg: '#ffb347',
-    emDashFg: '#000000',
+    enDashBg: '#7083e1',
+    enDashFg: '#ffffff',
+    emDashBg: '#ff0000',
+    emDashFg: '#ffffff',
     enDashEnable: true,
     emDashEnable: true
   }, function(items) {
@@ -42,10 +42,10 @@ let originalPreviewText = '';
 function updatePreview() {
   const enEnabled = document.getElementById('en-enable')?.checked ?? true;
   const emEnabled = document.getElementById('em-enable')?.checked ?? true;
-  const enBg = document.getElementById('en-bg')?.value || '#ffff00';
-  const enFg = document.getElementById('en-fg')?.value || '#000000';
-  const emBg = document.getElementById('em-bg')?.value || '#ffb347';
-  const emFg = document.getElementById('em-fg')?.value || '#000000';
+  const enBg = document.getElementById('en-bg')?.value || '#7083e1';
+  const enFg = document.getElementById('en-fg')?.value || '#ffffff';
+  const emBg = document.getElementById('em-bg')?.value || '#ff0000';
+  const emFg = document.getElementById('em-fg')?.value || '#ffffff';
   const preview = document.getElementById('dash-preview');
   if (!preview) return;
 
