@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dash Highlighter Options</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    label { display: block; margin-top: 1em; }
+    input[type="color"] { margin-left: 1em; }
+    .dash-type { margin-top: 2em; font-weight: bold; }
+    button { margin-top: 2em; }
+  </style>
+</head>
+<body>
+  <h1>Dash Highlighter Options</h1>
+  <form id="options-form">
+    <div class="dash-type">En Dash (–)</div>
+    <label>Background Color: <input type="color" id="en-bg" name="en-bg"></label>
+    <label>Text Color: <input type="color" id="en-fg" name="en-fg"></label>
+    <div class="dash-type">Em Dash (—)</div>
+    <label>Background Color: <input type="color" id="em-bg" name="em-bg"></label>
+    <label>Text Color: <input type="color" id="em-fg" name="em-fg"></label>
+    <button type="submit">Save</button>
+    <span id="status" style="margin-left:1em;"></span>
+  </form>
+  <script src="options.js"></script>
+</body>
+</html>

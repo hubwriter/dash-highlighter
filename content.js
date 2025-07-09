@@ -6,12 +6,27 @@
     const EN_DASH = '\u2013'; // –
     const EM_DASH = '\u2014'; // —
 
-    // Styles for highlighting
-    const EN_DASH_STYLE = 'font-family: math, "Times New Roman", fantasy, serif; background-color:black; color:white';
-    const EM_DASH_STYLE = 'font-family: math, "Times New Roman", fantasy, serif; background-color:yellow';
+    // Default styles for highlighting
+    const DEFAULTS = {
+        enDashBg: '#ffff00', // yellow
+        enDashFg: '#000000', // black
+        emDashBg: '#ffb347', // orange
+        emDashFg: '#000000'  // black
+    };
 
     // Create a unique class name to avoid conflicts
     const PROCESSED_CLASS = 'dash-highlighter-processed';
+
+    // Store user styles
+    let userStyles = { ...DEFAULTS };
+
+    function getStyle(dashType) {
+        if (dashType === 'en') {
+            return `font-family: math, 'Times New Roman', fantasy, serif; background-color:${userStyles.enDashBg}; color:${userStyles.enDashFg}`;
+        } else {
+            return `font-family: math, 'Times New Roman', fantasy, serif; background-color:${userStyles.emDashBg}; color:${userStyles.emDashFg}`;
+        }
+    }
 
     function highlightDashes() {
         // Get all text nodes in the document
@@ -67,14 +82,14 @@
             if (part === EN_DASH) {
                 // Create span for en dash
                 const span = document.createElement('span');
-                span.style.cssText = EN_DASH_STYLE;
+                span.style.cssText = getStyle('en');
                 span.textContent = EN_DASH;
                 span.classList.add(PROCESSED_CLASS);
                 fragment.appendChild(span);
             } else if (part === EM_DASH) {
                 // Create span for em dash
                 const span = document.createElement('span');
-                span.style.cssText = EM_DASH_STYLE;
+                span.style.cssText = getStyle('em');
                 span.textContent = EM_DASH;
                 span.classList.add(PROCESSED_CLASS);
                 fragment.appendChild(span);
@@ -90,8 +105,15 @@
 
     // Run when page loads
     function init() {
-        // Initial highlighting
-        highlightDashes();
+        // Load user options from chrome.storage
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync) {
+            chrome.storage.sync.get(DEFAULTS, function(items) {
+                userStyles = items;
+                highlightDashes();
+            });
+        } else {
+            highlightDashes();
+        }
 
         // Set up mutation observer for dynamically added content
         const observer = new MutationObserver(function(mutations) {
