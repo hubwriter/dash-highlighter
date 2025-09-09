@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Highlights en dashes and em dashes on web pages",
   "scripts": {
-    "lint": "npx eslint *.js",
-    "lint:fix": "npx eslint *.js --fix"
+    "lint": "npx eslint \"**/*.js\"",
+    "lint:fix": "npx eslint \"**/*.js\" --fix"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
