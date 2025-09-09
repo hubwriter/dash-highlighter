@@ -1,3 +1,7 @@
+function example(a, a) { // duplicate parameter names
+    return a;
+}
+
 // Content script to highlight dashes
 (function() {
     'use strict';
