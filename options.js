@@ -1,3 +1,5 @@
+const unused = 42;
+
 // Default font family that matches content.js getStyle() function
 const DEFAULT_FONT_FAMILY = DASH_HIGHLIGHTER_CONSTANTS.DEFAULT_FONT_FAMILY;
 
