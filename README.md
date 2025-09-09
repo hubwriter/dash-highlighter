@@ -116,6 +116,23 @@ Alternatively, you can:
 
 Feel free to submit issues or pull requests if you find bugs or want to suggest improvements!
 
+### Development Setup
+
+1. Clone the repository
+2. Install development dependencies: `npm install`
+3. Run ESLint: `npm run lint`
+4. Fix ESLint issues: `npm run lint:fix`
+
+### Code Quality
+
+This project uses ESLint to maintain code quality. A GitHub Actions workflow automatically runs ESLint on pull requests to:
+
+- ✅ Check for JavaScript errors and potential issues
+- 📝 Show warnings and errors as comments in the PR diff view
+- ❌ Prevent merging if any ESLint errors are found (warnings are allowed)
+
+The workflow can also be run manually from the Actions tab in GitHub.
+
 ## License
 
 MIT License - see LICENSE file for details.
