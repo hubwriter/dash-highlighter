@@ -35,17 +35,17 @@ jobs:
         github_token: ${{ secrets.github_token }}
         reporter: github-pr-review
         eslint_flags: '**/*.js'
-        fail_on_error: true
+        fail_level: error
         filter_mode: added
 
     - name: Run ESLint for manual dispatch
       if: github.event_name == 'workflow_dispatch'
       run: |
         echo "Running ESLint on all JavaScript files:"
-        npx eslint "**/*.js"
+        npx eslint '**/*.js'
         
         # Check for errors
-        npx eslint "**/*.js" --format json > eslint-results.json || true
+        npx eslint '**/*.js' --format json > eslint-results.json || true
         
         error_count=$(node -e "
           const results = require('./eslint-results.json');
