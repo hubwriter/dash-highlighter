@@ -1,3 +1,5 @@
+const unusedVariable = 'test';
+
 // Shared constants for the Dash Highlighter extension
 const DASH_HIGHLIGHTER_CONSTANTS = {
     // Default font family that matches content.js getStyle() function
