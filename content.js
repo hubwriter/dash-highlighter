@@ -1,4 +1,5 @@
 // Content script to highlight dashes
+// Enhanced with ESLint PR workflow
 (function() {
     'use strict';
 
