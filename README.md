@@ -44,15 +44,17 @@ Since this extension is not published on the Chrome Web Store, you'll need to in
 
    You can change the highlighting colors in the extension's options. See "Configuration" below.
 
-## Examples
+## Exampless
 
 The extension will highlight dashes in content like:
-- Date ranges: "January 1–15, 2025."
-- Time ranges: "2:00–3:30 PM."
-- Page ranges: "See pages 10–25."
-- Emphasis: "This is important—pay attention."
 
-## Configuration
+
+   -- Date ranges: "January 1–15, 2025."
+   -- Time ranges: "2:00–3:30 PM."
+   -- Page ranges: "See pages 10–25."
+   -- Emphasis: "This is important—pay attention."
+
+##### Configuration
 
 The extension is fully configurable, allowing you to customize highlighting colors, fonts, and enable/disable settings for both en dashes and em dashes.
 
