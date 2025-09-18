@@ -1,4 +1,5 @@
 // Content script to highlight dashes
+// Testing ESLint workflow
 (function() {
     'use strict';
 
