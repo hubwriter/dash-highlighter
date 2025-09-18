@@ -36,6 +36,7 @@ jobs:
         reporter: github-pr-review
         eslint_flags: '**/*.js'
         fail_on_error: true
+        fail_level: error
         filter_mode: added
 
     - name: Run ESLint (Manual mode)
