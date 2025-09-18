@@ -1,0 +1,74 @@
+name: ESLint PR Check
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  eslint:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run ESLint with reviewdog (PR mode)
+      if: github.event_name == 'pull_request'
+      uses: reviewdog/action-eslint@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        eslint_flags: '**/*.js'
+        fail_on_error: true
+        fail_level: error
+        filter_mode: added
+
+    - name: Run ESLint (Manual mode)
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "🔍 Running ESLint on all JavaScript files..."
+        npx eslint '**/*.js' --format json > eslint-results.json || true
+        
+        # Show human-readable output
+        echo "📋 ESLint Results:"
+        npx eslint '**/*.js' || true
+        
+        # Check for errors and fail if found
+        error_count=$(node -e "
+          const results = require('./eslint-results.json');
+          const errorCount = results.reduce((sum, result) => 
+            sum + result.messages.filter(msg => msg.severity === 2).length, 0);
+          console.log(errorCount);
+        ")
+        
+        warning_count=$(node -e "
+          const results = require('./eslint-results.json');
+          const warningCount = results.reduce((sum, result) => 
+            sum + result.messages.filter(msg => msg.severity === 1).length, 0);
+          console.log(warningCount);
+        ")
+        
+        echo "📊 Summary: $error_count error(s), $warning_count warning(s)"
+        
+        if [ "$error_count" -gt 0 ]; then
+          echo "❌ ESLint found $error_count error(s). Workflow failed."
+          exit 1
+        else
+          echo "✅ No ESLint errors found. Workflow passed."
+        fi
