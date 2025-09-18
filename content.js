@@ -2,6 +2,9 @@
 // Enhanced with ESLint PR workflow
 (function() {
     'use strict';
+    
+    // Test: This should trigger an ESLint error
+    console.log(undefinedVariable);
 
     // Unicode characters for dashes
     const EN_DASH = '\u2013'; // –
