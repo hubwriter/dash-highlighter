@@ -8,7 +8,7 @@
     const EM_DASH = '\u2014'; // —
 
     // Default styles for highlighting
-    const DEFAULTS = DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS;
+    const DEFAULTS = DASH_HIGHLIGHTER_CONSTANTS.DEFAULTS
 
     // Create a unique class name to avoid conflicts
     const PROCESSED_CLASS = 'dash-highlighter-processed';
@@ -22,7 +22,7 @@
         const patterns = urlPatterns;
 
         // If no patterns specified, run on all URLs
-        if (!patterns || patterns.trim() === '') {
+        if (!patterns || patterns.trim() === '' {
             return true;
         }
 
