@@ -1,27 +1,23 @@
-name: ESLint PR Quality Check
+name: ESLint PR Check
 
 on:
   pull_request:
     branches: [ main ]
-    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
   eslint:
-    name: ESLint Code Review
+    name: Run ESLint
     runs-on: ubuntu-latest
     
     permissions:
       contents: read
       pull-requests: write
       checks: write
-      statuses: write
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -32,153 +28,46 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Get changed files
-      id: changed-files
+    - name: Run ESLint with reviewdog (PR mode)
       if: github.event_name == 'pull_request'
-      run: |
-        git diff --name-only origin/main...HEAD | grep '\.js$' > changed_js_files.txt || true
-        if [ -s changed_js_files.txt ]; then
-          echo "has_js_changes=true" >> $GITHUB_OUTPUT
-          echo "Changed JavaScript files:"
-          cat changed_js_files.txt
-        else
-          echo "has_js_changes=false" >> $GITHUB_OUTPUT
-          echo "No JavaScript files changed"
-        fi
+      uses: reviewdog/action-eslint@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
+        eslint_flags: '**/*.js'
+        fail_on_error: true
+        filter_mode: added
 
-    - name: Run ESLint on changed files (PR)
-      if: github.event_name == 'pull_request' && steps.changed-files.outputs.has_js_changes == 'true'
-      run: |
-        echo "Running ESLint on changed JavaScript files..."
-        
-        # Run ESLint and capture both stdout and results
-        if [ -s changed_js_files.txt ]; then
-          npx eslint $(cat changed_js_files.txt | tr '\n' ' ') --format json > eslint-results.json || true
-          npx eslint $(cat changed_js_files.txt | tr '\n' ' ') || true
-        fi
-        
-        # Process results
-        if [ -f eslint-results.json ]; then
-          node -e "
-            const fs = require('fs');
-            const results = JSON.parse(fs.readFileSync('eslint-results.json', 'utf8'));
-            
-            let errorCount = 0;
-            let warningCount = 0;
-            
-            results.forEach(result => {
-              result.messages.forEach(msg => {
-                if (msg.severity === 2) errorCount++;
-                if (msg.severity === 1) warningCount++;
-              });
-            });
-            
-            console.log('Errors:', errorCount);
-            console.log('Warnings:', warningCount);
-            
-            fs.writeFileSync('error-count.txt', errorCount.toString());
-            fs.writeFileSync('warning-count.txt', warningCount.toString());
-            
-            const summary = \`## 🔍 ESLint Results
-
-📊 **Summary:**
-- 🔴 Errors: \${errorCount}
-- 🟡 Warnings: \${warningCount}
-- 📁 Files checked: \${results.length}
-
-\${errorCount > 0 ? '❌ **Cannot merge: ESLint errors found**' : '✅ **No ESLint errors found**'}
-
-\${warningCount > 0 ? '⚠️ Please review the warnings' : ''}
-\`;
-            
-            fs.writeFileSync('eslint-summary.md', summary);
-          "
-        fi
-
-    - name: Run ESLint on all files (Manual)
+    - name: Run ESLint (Manual mode)
       if: github.event_name == 'workflow_dispatch'
       run: |
-        echo "Running ESLint on all JavaScript files..."
+        echo "🔍 Running ESLint on all JavaScript files..."
         npx eslint '**/*.js' --format json > eslint-results.json || true
+        
+        # Show human-readable output
+        echo "📋 ESLint Results:"
         npx eslint '**/*.js' || true
         
-        node -e "
-          const fs = require('fs');
-          const results = JSON.parse(fs.readFileSync('eslint-results.json', 'utf8'));
-          
-          let errorCount = 0;
-          let warningCount = 0;
-          
-          results.forEach(result => {
-            result.messages.forEach(msg => {
-              if (msg.severity === 2) errorCount++;
-              if (msg.severity === 1) warningCount++;
-            });
-          });
-          
-          fs.writeFileSync('error-count.txt', errorCount.toString());
-          fs.writeFileSync('warning-count.txt', warningCount.toString());
-        "
-
-    - name: Comment on PR with results
-      if: github.event_name == 'pull_request' && steps.changed-files.outputs.has_js_changes == 'true'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          
-          if (!fs.existsSync('eslint-summary.md')) {
-            console.log('No ESLint summary found, skipping comment');
-            return;
-          }
-          
-          const summary = fs.readFileSync('eslint-summary.md', 'utf8');
-          
-          // Find existing comment
-          const comments = await github.rest.issues.listComments({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number,
-          });
-          
-          const existingComment = comments.data.find(comment => 
-            comment.body.includes('🔍 ESLint Results')
-          );
-          
-          const commentBody = summary + '\n\n---\n*This comment will be updated when new commits are pushed.*';
-
-          if (existingComment) {
-            await github.rest.issues.updateComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              comment_id: existingComment.id,
-              body: commentBody
-            });
-            console.log('Updated existing ESLint comment');
-          } else {
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: commentBody
-            });
-            console.log('Created new ESLint comment');
-          }
-
-    - name: Check for errors and set exit code
-      run: |
-        if [ -f error-count.txt ]; then
-          error_count=$(cat error-count.txt)
-          warning_count=$(cat warning-count.txt 2>/dev/null || echo "0")
-          
-          echo "ESLint found $error_count error(s) and $warning_count warning(s)"
-          
-          if [ "$error_count" -gt 0 ]; then
-            echo "❌ ESLint found $error_count error(s). Pull request check failed."
-            exit 1
-          else
-            echo "✅ No ESLint errors found. Pull request check passed."
-          fi
+        # Check for errors and fail if found
+        error_count=$(node -e "
+          const results = require('./eslint-results.json');
+          const errorCount = results.reduce((sum, result) => 
+            sum + result.messages.filter(msg => msg.severity === 2).length, 0);
+          console.log(errorCount);
+        ")
+        
+        warning_count=$(node -e "
+          const results = require('./eslint-results.json');
+          const warningCount = results.reduce((sum, result) => 
+            sum + result.messages.filter(msg => msg.severity === 1).length, 0);
+          console.log(warningCount);
+        ")
+        
+        echo "📊 Summary: $error_count error(s), $warning_count warning(s)"
+        
+        if [ "$error_count" -gt 0 ]; then
+          echo "❌ ESLint found $error_count error(s). Workflow failed."
+          exit 1
         else
-          echo "✅ No JavaScript files to check."
+          echo "✅ No ESLint errors found. Workflow passed."
         fi
