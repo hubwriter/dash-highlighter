@@ -70,26 +70,28 @@ Alternatively, you can:
 
 ### Available Settings
 
-- **URL Patterns**: Control which websites the extension runs on.
-  - Default: `https://github.com/*` (GitHub only).
-  - Use `*` or leave empty to run on all sites.
-  - Use `file://*` to run on local files.
+- **URL Patterns**: Control which GitHub pages the extension runs on.
+  - Default: `https://github.com/*` (all of GitHub).
+  - Use `https://github.com/owner/repo/*` for specific repositories.
+  - Use `*` or leave empty to run on all GitHub domains.
   - Supports wildcards and comma-separated patterns.
+  - **Note**: Extension only has permissions for GitHub domains (github.com and subdomains).
 - **Font Family**: Choose the font for highlighted dashes.
 - **Colors**: Customize background and text colors for each dash type.
 - **Enable/Disable**: Toggle highlighting for en dashes and em dashes individually.
 
 ### URL Pattern Examples
 
-- `https://github.com/*` - GitHub only.
-- `https://*.github.com/*` - GitHub and subdomains.
-- `file://*` - Local files.
-- `https://example.com/*,https://test.com/*` - Multiple sites.
-- `*` or empty - All websites.
+- `https://github.com/*` - All of GitHub.
+- `https://github.com/owner/*` - All repositories for a specific owner.
+- `https://github.com/owner/repo/*` - A specific repository only.
+- `*` or empty - All GitHub domains (github.com and subdomains).
+
+**Note**: The extension only has permissions for GitHub domains. To use on other sites, you would need to modify `manifest.json` and reload the extension.
 
 ## Technical Details
 
-- **Permissions**: Configurable - by default only accesses github.com pages, but can be set to work on any URL.
+- **Permissions**: Restricted to GitHub domains only (github.com and subdomains) for security.
 - **Performance**: Uses efficient DOM traversal to minimize impact.
 - **Compatibility**: Works with dynamically loaded content.
 - **Privacy**: No data collection or external requests.
